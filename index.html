@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Кинопоиск</title>
+</head>
+<body>
+    <header class="rounded">
+        <h1>Кинопоиск</h1>
+        <nav class="darkBg">
+            <button class="active">Главная</button>
+            <button>Избранное</button>
+        </nav>
+        <img src="./themeChange.svg" alt="themeChange_Icon" id="changeBtn">
+    </header>
+    <div class="search rounded">
+        <input type="text" name="search">
+        <button class="darkBg" id="searchBtn">Поиск</button>
+    </div>
+    <div class="loader rounded"></div>
+    <div class="rounded message">
+
+    </div>
+    <main class="rounded" id="main">
+        <div class="movieTitle darkBg">
+            <h2 class="textCenter">Iron Lady</h2>
+        </div>
+        <div class="movie darkBg">
+            <div class="movieImage" style="background-image: url('./Front_53_OMDB/img/film3.jpg')"></div>
+            <div class="movieDesc">
+                <div class="desc">
+                    <div class="movieLeft">Actors</div>
+                    <div class="movieRight">Meryl Streep, Jim Broadbent, Richard E. Grant</div>
+                </div>
+            </div>
+        </div>
+        <div class="similarTitle darkBg">
+            <h2 class="textCenter"></h2>
+        </div>
+        <div class="similarMovies">
+            <div class="similarCard" style="background-image: url()">
+                <div class="favStar"><img src="./favBtn.svg" alt=""></div>
+                <h3></h3>
+            </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <script src="./main.js"></script>
+</body>
+</html>
