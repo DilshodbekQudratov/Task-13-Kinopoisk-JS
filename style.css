@@ -31,7 +31,7 @@ body.dark {
     margin-bottom: 5px;
 }
 body {
-    background-image: url('./background.jpg' );
+    background-image: url('./Front_53_OMDB/img/background.jpg' );
     padding: 20px;
     animation: bg-animation 1000s infinite linear;
 }
@@ -159,7 +159,7 @@ main.rounded {
     border-radius: 5px;
     background-color: var(--color1);
 
-    background-image: url("./favBtn.svg");
+    background-image: url("./Front_53_OMDB/img/favBtn.svg");
     background-size: 35px;
     background-position: top 5px left 5px;
     background-repeat: no-repeat;
