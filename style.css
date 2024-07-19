@@ -121,6 +121,12 @@ main.rounded {
     background-size: cover;
     background-position: center;
     border-radius: 10px;
+    position: relative;
+}
+.movieDesc {
+    flex: 300px 1 0; /*flex-basis = 300px - базовый размер по основной оси; 
+    flex-grow = 1 - будет расти, чтобы заполнить все доступное пространство 
+    контейнера; flex-shrink = 0 - не будет сжиматься меньше 300 пикселей*/
 }
 .desc {
     display: grid;
@@ -130,11 +136,10 @@ main.rounded {
     padding: 5px;
     border-radius: 5px;
 }
-.movieDesc {
-    flex: 300px 1 0;
-}
+
 .similarMovies {
-    display: grid;
+    /* display: grid; */
+    display: none;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
@@ -146,6 +151,33 @@ main.rounded {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    position: relative;
+}
+.favStar {
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    background-color: var(--color1);
+
+    background-image: url("./favBtn.svg");
+    background-size: 35px;
+    background-position: top 5px left 5px;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    filter: invert(1);
+}
+.favStar.active {
+    filter: invert(21%) sepia(86%) saturate(2811%) hue-rotate(1deg) brightness(103%) contrast(101%);
+
+/*invert(21%) - инвертирует цвета элемента на 21%. Это меняет цвета элемента на противоположные, но только на 21%, то есть частичная инверсия.
+sepia(86%) - применяет сепию к элементу на 86%, придавая ему старинный, коричневатый оттенок.
+saturate(2811%) - увеличивает насыщенность цветов элемента на 2811%, делая цвета намного более яркими и насыщенными.
+hue-rotate(1deg) - поворачивает оттенок элемента на 1 градус, слегка меняя его цвет.
+brightness(103%) - увеличивает яркость элемента на 3%, делая его немного светлее.
+contrast(101%) - увеличивает контраст элемента на 1%, делая разницу между цветами чуть более выраженной.*/
 }
 .similarCard h3 {
     text-align: center;

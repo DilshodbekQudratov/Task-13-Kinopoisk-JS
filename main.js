@@ -129,16 +129,75 @@ async function searchSimilarMovies(title) {
  
 }
 function showSimilarMovies(movies) {
-     let similarMoviesDiv = document.querySelector(".similarMovies");
-     similarMoviesDiv.innerHTML = "";
-     movies.forEach(movie => {
-    similarMoviesDiv.innerHTML += `
-            <div class="similarCard" style="background-image: url('${movie.Poster}')">
-                <div class="favStar"></div>
-                <h3>${movie.Title}</h3>
-            </div>
-        `;
-    });
+    // let similarMoviesDiv = document.querySelector(".similarMovies");
+    // similarMoviesDiv.innerHTML = "";
+    // movies.forEach(movie => {
+    // similarMoviesDiv.innerHTML += `
+    //         <div class="similarCard" style="background-image: url('${movie.Poster}')">
+    //             <div class="favStar"></div>
+    //             <h3>${movie.Title}</h3>
+    //         </div>
+    //     `;
+    // });
     // document.querySelector(".similarTitle").style.display = "block";
+    // similarMoviesDiv.style.display = "grid";
+    
+    const similarTitle = document.querySelector(".similarTitle");
+    const similarMoviesDiv = document.querySelector(".similarMovies");
+    similarMoviesDiv.innerHTML = ""
+    movies.forEach((movie) => {
+
+        const exists = favs.some(fav => fav.imdbid == movie.imdbID); // дает возможность увидеть, какие похожие фильмы были добавлены в избранные при повторном поиске одного и того же фильма
+        let favClass = ""
+        if (exists) {
+            favClass = "active"
+        }
+
+    similarMoviesDiv.innerHTML += `
+                 <div class="similarCard" style="background-image: url('${movie.Poster}')">
+                   <div class="favStar ${favClass}" data-poster="${movie.Poster}" data-title="${movie.Title}" data-imdbid="${movie.imdbID}"></div>
+                     <h3>${movie.Title}</h3>
+                </div>
+            `;
+    });
     similarMoviesDiv.style.display = "grid";
-    }
+    similarTitle.style.display = "block";
+    activateFavBtns()
+}
+
+function activateFavBtns() {
+    document.querySelectorAll('.favStar').forEach((favBtn) => {
+        favBtn.addEventListener('click', addToFav)
+    })
+}
+
+let favs = localStorage.getItem('favs') // создаем массив сохраненных в избранное фильмов
+if (!favs) {
+    favs = []
+    localStorage.setItem('favs', JSON.stringify(favs))
+} else {
+    favs = JSON.parse(favs)
+}
+function addToFav() {
+        let favBtn = event.target // подсвечивает конкретный элемент, который вызывает функцию addToFav()
+        let poster = favBtn.getAttribute('data-poster')
+        let title = favBtn.getAttribute('data-title')
+        let imdbid = favBtn.getAttribute('data-imdbid')
+        const exists = favs.some(fav => fav.imdbid == imdbid);
+
+        if (exists) {
+            // Удалить из LS
+            favs = favs.filter(fav => fav.imdbid !== imdbid);
+            localStorage.setItem('favs', JSON.stringify(favs))
+            favBtn.classList.remove('active')
+        }
+        else {
+            // Добавить в LS
+            let fav = {imdbid, title, poster}
+            favs.push(fav)
+            localStorage.setItem('favs',  JSON.stringify(favs))
+            favBtn. classList.add('active')
+        }
+        // console.log(title, imdbid, poster);
+        // favBtn.classList.toggle('active')
+}
