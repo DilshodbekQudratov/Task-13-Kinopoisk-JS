@@ -196,8 +196,32 @@ function addToFav() {
             let fav = {imdbid, title, poster}
             favs.push(fav)
             localStorage.setItem('favs',  JSON.stringify(favs))
-            favBtn. classList.add('active')
+            favBtn.classList.add('active')
         }
         // console.log(title, imdbid, poster);
         // favBtn.classList.toggle('active')
+}
+
+document.querySelector('.FavMoviesBtn').addEventListener('click', getListFav)
+
+function getListFav() {
+    let listFav = localStorage.getItem('favs')
+    console.log(listFav);
+    showFavMovies(listFav)
+}
+
+function showFavMovies(favs) {
+    console.log(favs)
+    let favMovies = document.querySelector('.similarMovies')
+    favs = JSON.parse(favs)
+    favMovies.innerHTML = ""
+    favs.forEach((favs) => {
+        
+        favMovies.innerHTML += `<div class="similarCard" style="background-image: url('${favs.poster}')">
+                   <div class="favStar" data-poster="${favs.poster}" data-title="${favs.title}" data-imdbid="${favs.imdbID}"></div>
+                     <h3>${favs.title}</h3>
+                </div>`
+    });
+     document.querySelector(".similarTitle h2").innerHTML = `Избранное`
+    favMovies.style.display = "grid";
 }
